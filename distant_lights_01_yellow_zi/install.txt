@@ -1,4 +1,0 @@
-charset,UTF-8
-type,balloon
-name,Distant Lights 01 - Yellow
-directory,distant_lights_01_yellow_zi
