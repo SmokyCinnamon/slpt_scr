@@ -1,0 +1,52 @@
+﻿descript
+{
+	version,1
+}
+
+//—————————————————————————————— Sakura surfaces ——————————————————————————————
+
+surface0
+{
+	element0,overlay,door_closed.png,0,0
+
+
+	//i cant figure out how to get the other two doors cooperative so that'll have to be ghost side
+	//animation1.interval,never
+	//animation1.pattern0,base,0,150,0,0
+	//animation1.pattern1,base,1,250,0,0
+	//animation1.pattern2,base,2,350,0,0
+}
+
+surface1
+{
+	element0,overlay,door_peek.png,0,0
+
+	animation0.interval,bind
+	animation0.pattern0,overlay,3,0,0,0
+	animation0.option,background
+}
+surface2
+{
+	element0,overlay,door_open.png,0,0
+	
+	animation0.interval,bind
+	animation0.pattern0,overlay,4,0,0,0
+	animation0.option,background
+}
+
+surface3
+{
+	element0,overlay,base_peek.png,0,0
+}
+
+surface4
+{
+	element0,overlay,base_open.png,0,0
+}
+
+//—————————————————————————————— Kero surfaces ——————————————————————————————
+
+surface10
+{
+	collision0,0,0,130,65,head
+}

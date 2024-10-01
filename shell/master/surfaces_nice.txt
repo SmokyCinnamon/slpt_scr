@@ -1,0 +1,134 @@
+nice 100+
+version,1
+
+surface100
+{
+    element0,overlay,base_open.png,0,0
+    element1,overlayfast,nice/ashField.png,0,0
+}
+
+surface101
+{
+    element0,overlay,base_open.png,0,0
+    element1,overlayfast,nice/emptyStars.png,0,0
+}
+
+surface102
+{
+    element0,overlay,base_open.png,0,0
+    element1,overlayfast,nice/evening.png,0,0
+}
+
+surface103
+{
+    element0,overlay,base_open.png,0,0
+    element1,overlayfast,nice/fishies.png,0,0
+}
+
+surface104
+{
+    element0,overlay,base_open.png,0,0
+    element1,overlayfast,nice/mountain.png,0,0
+}
+
+surface105
+{
+    element0,overlay,base_open.png,0,0
+    element1,overlayfast,nice/nightCity.png,0,0
+}
+
+surface106
+{
+    element0,overlay,base_open.png,0,0
+    element1,overlayfast,nice/oceanSun.png,0,0
+}
+
+surface107
+{
+    element0,overlay,base_open.png,0,0
+    element1,overlayfast,nice/parkPath.png,0,0
+}
+
+add dressups to surfaces 3 and 4
+surface3
+{
+    animation100.interval,bind
+    animation100.pattern0,overlay,100,0,0,0
+
+    animation101.interval,bind
+    animation101.pattern0,overlay,101,0,0,0
+
+    animation102.interval,bind
+    animation102.pattern0,overlay,102,0,0,0
+
+    animation103.interval,bind
+    animation103.pattern0,overlay,103,0,0,0
+
+    animation104.interval,bind
+    animation104.pattern0,overlay,104,0,0,0
+
+    animation105.interval,bind
+    animation105.pattern0,overlay,105,0,0,0
+
+    animation106.interval,bind
+    animation106.pattern0,overlay,106,0,0,0
+
+    animation107.interval,bind
+    animation107.pattern0,overlay,107,0,0,0
+
+}
+
+surface4
+{
+    animation100.interval,bind
+    animation100.pattern0,overlay,100,0,0
+
+    animation101.interval,bind
+    animation101.pattern0,overlay,101,0,0
+
+    animation102.interval,bind
+    animation102.pattern0,overlay,102,0,0
+
+    animation103.interval,bind
+    animation103.pattern0,overlay,103,0,0
+
+    animation104.interval,bind
+    animation104.pattern0,overlay,104,0,0
+
+    animation105.interval,bind
+    animation105.pattern0,overlay,105,0,0
+
+    animation106.interval,bind
+    animation106.pattern0,overlay,106,0,0
+
+    animation107.interval,bind
+    animation107.pattern0,overlay,107,0,0
+
+}
+surface0
+{
+    animation100.interval,bind
+    animation100.pattern0,interpolate,100,0,0
+
+    animation101.interval,bind
+    animation101.pattern0,interpolate,101,0,0
+
+    animation102.interval,bind
+    animation102.pattern0,interpolate,102,0,0
+
+    animation103.interval,bind
+    animation103.pattern0,interpolate,103,0,0
+
+    animation104.interval,bind
+    animation104.pattern0,interpolate,104,0,0
+
+    animation105.interval,bind
+    animation105.pattern0,interpolate,105,0,0
+
+    animation106.interval,bind
+    animation106.pattern0,interpolate,106,0,0
+
+    animation107.interval,bind
+    animation107.pattern0,interpolate,107,0,0
+
+}

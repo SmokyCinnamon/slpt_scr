@@ -1,0 +1,119 @@
+version,1
+
+surface20
+{
+    element0,overlay,door/blue_closed.png,0,0
+}
+
+surface21
+{
+    element0,overlay,door/blue_open.png,0,0
+}
+
+surface22
+{
+    element0,overlay,door/blue_peek.png,0,0
+}
+
+surface23
+{
+    element0,overlay,door/green_closed.png,0,0
+}
+
+surface24
+{
+    element0,overlay,door/green_open.png,0,0
+}
+
+surface25
+{
+    element0,overlay,door/green_peek.png,0,0
+}
+
+surface26
+{
+    element0,overlay,door/pink_closed.png,0,0
+}
+
+surface27
+{
+    element0,overlay,door/pink_open.png,0,0
+}
+
+surface28
+{
+    element0,overlay,door/pink_peek.png,0,0
+}
+
+surface29
+{
+    element0,overlay,door/purple_closed.png,0,0
+}
+
+surface30
+{
+    element0,overlay,door/purple_open.png,0,0
+}
+
+surface31
+{
+    element0,overlay,door/purple_peek.png,0,0
+}
+
+surface32
+{
+    element0,overlay,door/red_closed.png,0,0
+}
+
+surface33
+{
+    element0,overlay,door/red_open.png,0,0
+}
+
+surface34
+{
+    element0,overlay,door/red_peek.png,0,0
+}
+
+
+surface0
+{
+    animation20.interval,bind
+    animation20.pattern0,overlay,20,0,0,0
+    animation21.interval,bind
+    animation21.pattern0,overlay,23,0,0,0
+    animation22.interval,bind
+    animation22.pattern0,overlay,26,0,0,0
+    animation23.interval,bind
+    animation23.pattern0,overlay,29,0,0,0
+    animation24.interval,bind
+    animation24.pattern0,overlay,32,0,0,0
+}
+
+surface1
+{
+    animation20.interval,bind
+    animation20.pattern0,overlay,22,0,0,0
+    animation21.interval,bind
+    animation21.pattern0,overlay,25,0,0,0
+    animation22.interval,bind
+    animation22.pattern0,overlay,28,0,0,0
+    animation23.interval,bind
+    animation23.pattern0,overlay,31,0,0,0
+    animation24.interval,bind
+    animation24.pattern0,overlay,34,0,0,0
+}
+
+surface2
+{
+    animation20.interval,bind
+    animation20.pattern0,overlay,21,0,0,0
+    animation21.interval,bind
+    animation21.pattern0,overlay,24,0,0,0
+    animation22.interval,bind
+    animation22.pattern0,overlay,27,0,0,0
+    animation23.interval,bind
+    animation23.pattern0,overlay,30,0,0,0
+    animation24.interval,bind
+    animation24.pattern0,overlay,33,0,0,0
+}

@@ -1,0 +1,86 @@
+OnAiTalk
+{
+	if CHAIN.IDName == ""
+	{
+		LastTalk = RandomTalk
+	}
+	else
+	{
+		LastTalk = ChainTalk
+	}
+	LastTalk
+}
+
+RandomTalk : nonoverlap_pool
+{
+	if doorIsOpen == 1 {
+	
+	}
+	else {
+		"\![raise,OnAitalkDoorChange]"
+	}
+}
+
+OnAitalkDoorChange : all {
+	if doorIsOpen == 2 {
+		"\0\s[1]\w6\0\s[0]"
+	}
+	elseif doorIsOpen == 1 {
+		"\0\s[2]\w6\0\s[1]\w6\0\s[0]"
+	}
+	"\0\s[0]"
+	"\![bind,%(doorType),%(currentDoor),0]"
+	if doorType == "creepy" {
+		currentDoor = ANY(creepyDoors)
+		"\![bind,%(doorType),%(currentDoor),1]"
+		"\w9\0\s[1]"
+		doorIsOpen = 2
+	}
+	else {
+		currentDoor = ANY(niceDoors)
+		"\![bind,%(doorType),%(currentDoor),1]"
+		doorIsOpen = 0
+	}
+	//"proof of purchase"
+}
+
+OnMinuteChange {
+	passmin++
+	_num = aitalkinterval / 60
+	if _num != 0 && _num != 1 {
+		if passmin == 1 {
+			passmin = 0
+			if RAND(100) + 1 >= 25 && aitalkinterval != 0 {
+				//well......... it *is* a horror ghost so........ maybe it's okay to have it happen more often?
+				OnTypeChange
+			}
+		}
+	}
+}
+
+OnTypeChange : all {
+	if doorIsOpen == 1 {
+		"\0\s[2]\w9\w9\0\s[1]\w9\w9\0\s[0]\w9"
+	}
+	elseif doorIsOpen == 2 {
+		"\0\s[1]\w9\w9\0\s[0]\w9"
+	}
+	else {
+		"\0\s[0]\w9"
+	}
+	if doorType == "creepy" {
+		"\![bind,%(doorType),%(currentDoor),0]"
+		currentDoor = ANY(niceDoors)
+		doorType = "nice"
+		"\![bind,%(doorType),%(currentDoor),1]"
+		doorIsOpen = 0
+	}
+	else {
+		"\![bind,%(doorType),%(currentDoor),0]"
+		currentDoor = ANY(creepyDoors)
+		doorType = "creepy"
+		"\![bind,%(doorType),%(currentDoor),1]\w9\w9\w9\0\s[1]"
+		doorIsOpen = 2
+	}
+	//"proof of purchase\x"
+}

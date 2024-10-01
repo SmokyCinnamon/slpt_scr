@@ -1,0 +1,7 @@
+charset,UTF-8
+type,ghost
+
+name,Something lies past the threshold
+directory,slpt_scr
+
+balloon0.directory,distant_lights_01_yellow_zi

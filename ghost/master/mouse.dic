@@ -1,0 +1,53 @@
+//Separate from the menus because you could put other interactions here, like poking or booping or punching or asking about various hotspots
+OnMouseDoubleClick
+{
+	if reference5 == 0 //reference5 is the mouse button being clicked, in this case a left click
+	{
+		//reference3 is which character is being clicked
+		//If you want to add double click interactions, reference4 will be the name of the hitbox the mouse is over
+		if reference3 == 0
+		{
+			"\![bind,creepy,,0]\![bind,nice,,0]\![bind,%(doorType),%(currentDoor),1]"; --
+			//extra insurance
+			if askToOpen == "before menu" {
+				if doorIsOpen == 1; OnAskToOpen
+				else; OnOpenDoor //shortcutting it rather than same amount of clicks...
+			}
+			else; OnSakuraMenu
+		}
+		else
+		{
+			OnKeroMenu
+		}
+	}
+}
+
+OnAskToOpen : all {
+	//used to be for opening it but i think this might be a bit better...?
+	"\0%(s0)\_q\*The door... do I want to close it?\n\n"
+	"\__q[OnOpenDoor]Now's the time\__q\n"
+	"\__q[OnSakuraMenu]Maybe later\__q"
+	"\_q"
+}
+
+OnMouseMove
+{
+	if reference4 != ""
+	{
+		stroke++
+		
+		if stroke % 40 == 0
+		{
+			if reference3 == 0; OnMouseMove.Sakura
+			else; OnMouseMove.Kero
+		}
+	}
+}
+
+OnMouseMove.Sakura
+{
+	if reference4 == "head"
+	{
+		//"\0\s[0]Petting??"
+	}
+}

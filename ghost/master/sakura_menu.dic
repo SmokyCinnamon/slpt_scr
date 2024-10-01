@@ -1,0 +1,272 @@
+SakuraMenuGreetings : nonoverlap
+{
+	"Hello."
+	"How can I help you?"
+}
+
+//Because there is an all modifier here, you don't need to write -- between menu options
+OnSakuraMenu : all
+{
+	"\0%(s0)\b2\![set,autoscroll,disable]\_q"
+	//if SHIORI3FW.Eventid == "OnMouseDoubleClick"; SakuraMenuGreetings //The check here is so they won't comment if you click the back button. Remove if you prefer
+	if doorIsOpen == 0; "the door is closed."
+	elseif doorIsOpen == 2; "the door is slightly open..."
+	elseif doorIsOpen == 1; "the door is open!"
+	"\n\n"
+	
+	if doorIsOpen == 1; "%*\__q[OnOpenDoor]Close it.\__q\n"
+	elseif (doorIsOpen == 0 || doorIsOpen == 2) && askToOpen == "in menu"; "%*\__q[OnOpenDoor]Time to see what's past that door...\__q\n"
+	"\n------\n"
+	_options = ("before menu", "in menu")
+	"Open door: "
+	foreach _options; _option {
+		switch askToOpen == _option {
+			"\__q[OnToggleAsktoOpen,%(_option)]%(_option)\__q  "
+			"\f[underline,1]\_a[OnToggleAsktoOpen,%(_option)]%(_option)\_a\f[underline,0]  "
+		}
+	}
+	"\n\n[half]"
+	//"\![*]\q[Talk to me,OnAiTalk]"
+	//if LastTalk != ""; "  \![*]\q[Say that again,OnLastTalk]"
+	
+	"Change door: "
+	_talkrate = ("Never (on boot),0","1m,60","3m,180","5m,300","10m,600","15m,900","30m,1800","1hr,3600","2hrs,7200") //at this point i'm just seeing how far i can take it
+	foreach _talkrate; _rate {
+		switch aitalkinterval == TOINT(_rate[1]) {
+			//tbh idk how to explain switch. but like the first quotes is if aitalkinterval does not equal the current _rate and the second quotes is if it does
+			"\__q[OnTalkRateChange,%(_rate[1])]%(_rate[0])\__q  "
+			"\f[underline,1]\_a[OnTalkRateChange,%(_rate[1])]%(_rate[0])\_a\f[underline,0]  "
+		}
+	}
+	"\n\n[half]Door color: "
+	_colors = ("None")
+	_colors ,= doorColors
+	foreach _colors; _color {
+		switch currentColor == _color {
+			"\__q[OnColorChange,%(_color)]%(_color)\__q  "
+			"\f[underline,1]\_a[OnColorChange,%(_color)]%(_color)\_a\f[underline,0]  "
+		}
+	}
+	/*"\n\__q[OnGenerateSurfaces,nice]Generate nice surfaces\__q"
+	"\n\__q[OnGenerateSurfaces,creepy]Generate creepy surfaces\__q"
+	"\n\__q[OnGenerateDoors]Generate door colors\__q"*/
+	
+	"\n\n\![*]\q[Nevermind,blank]\n\n[half]"
+	_num = aitalkinterval / 60
+	if _num != 0 && _num != 1; "\f[color,disable]%(passmin)/%(_num)\f[color,default]"
+	"\_q"
+}
+
+OnColorChange {
+	_color = reference0
+	currentColor = _color
+	if _color == "None"; "\![bind,door,,0]"
+	else; "\![bind,door,%(_color),1]"
+	--
+	OnSakuraMenu
+}
+
+OnOpenDoor : all {
+	"\![bind,creepy,,0]\![bind,nice,,0]"
+	"\![bind,%(doorType),%(currentDoor),1]"
+	"\0%(s0)"
+	if doorIsOpen == 2 {
+		"Here goes...\w6\s[2]\w6\n............\w6\nHmm."
+		doorIsOpen = 1
+	}
+	elseif doorIsOpen == 1 {
+		"Maybe I should just..."
+		"\0\s[2]\w6\0\s[1]\w6\0\s[0]"
+		doorIsOpen = 0
+	}
+	else {
+		if doorType == "creepy" {
+			"\s[0]Okay, moment of truth..."
+			"\w6\s[1]\w9\s[2]\w9\n......\w6 I see."
+		}
+		else {
+			"\s[0]Alright, let's see..."
+			"\w6\s[1]\w9\s[2]\w9\nHuh...\w6 so that's what it is today."
+		}
+		doorIsOpen = 1
+	}
+	"\n\n\_q"
+	"%*\__q[OnSakuraMenu]to menu\__q  %*\__q[blank]done here\__q"
+	"\_q"
+}
+
+OnNotifySelfInfo {
+	shellPath = reference4
+	//i have no way to verify this but i typed it with my own two hands T_T
+}
+
+OnGenerateSurfaces : all {
+	_cow = reference0 //creepy or wet abbreviated - this is the variable sent from the menu that tells it what set of images i want to generate
+	_images = FENUM("%(shellPath)%(_cow)/") //shell path variable has a slash added on the end, image folder still needs one.
+	_images = SPLIT(_images,",")
+	
+	_file = "%(shellPath)surfaces_%(_cow).txt"
+	
+	_startNum = 1
+	if _cow == "nice"; _startNum = 100
+	elseif _cow == "creepy"; _startNum = 200
+	//i think if i had 100 images each this ghost would be set for life. anyways if it needs changed it can be
+	_num = _startNum //i KNEW there was a reason to do it this way
+	
+	
+	_f = FOPEN(_file,'w')
+	FWRITE(_file,"%(_cow) %(_startNum)+")
+	FWRITE(_file,"version,1"); FWRITE(_file,"")
+	foreach _images; _image {
+		FWRITE(_file,"surface%(_num)")
+		FWRITE(_file,"{")
+		FWRITE(_file,"    element0,overlay,base_open.png,0,0")
+		FWRITE(_file,"    element1,overlayfast,%(_cow)/%(_image),0,0")
+		FWRITE(_file,"}")
+		FWRITE(_file,"") //add an empty line for space
+		_num++
+	}
+	//and then append..
+	_num = _startNum
+	FWRITE(_file,"add dressups to surfaces 3 and 4")
+	FWRITE(_file,"surface3")
+	FWRITE(_file,"{")
+	foreach _images; _image {
+		//FWRITE(_file,"# %(_cow) %(_image)")
+		FWRITE(_file,"    animation%(_num).interval,bind")
+		FWRITE(_file,"    animation%(_num).pattern0,overlay,%(_num),0,0,0")
+		FWRITE(_file,"")
+		_num++
+	}
+	FWRITE(_file,"}")
+	FWRITE(_file,"")
+	_num = _startNum //and onto surface 5
+	FWRITE(_file,"surface4")
+	FWRITE(_file,"{")
+	foreach _images; _image {
+		//FWRITE(_file,"# %(_cow) %(_image)")
+		FWRITE(_file,"    animation%(_num).interval,bind")
+		FWRITE(_file,"    animation%(_num).pattern0,overlay,%(_num),0,0")
+		FWRITE(_file,"")
+		_num++
+	}
+	FWRITE(_file,"}")
+	
+	_num = _startNum //surface0 we need still because ???
+	FWRITE(_file,"surface0")
+	FWRITE(_file,"{")
+	foreach _images; _image {
+		//FWRITE(_file,"# %(_cow) %(_image)")
+		FWRITE(_file,"    animation%(_num).interval,bind")
+		FWRITE(_file,"    animation%(_num).pattern0,interpolate,%(_num),0,0")
+		FWRITE(_file,"")
+		_num++
+	}
+	FWRITE(_file,"}")
+	
+	_f = FCLOSE(_file)
+	--
+	//add file for copy/pasting into descript while we're at it
+	_file = "%(shellPath)descript.txt"
+	_num = _startNum // reset it
+	_f = FOPEN(_file,'a')
+	foreach _images; _image {
+		FWRITE(_file,"sakura.bindgroup%(_num).name,%(_cow),%(_image)")
+		FWRITE(_file,"sakura.bindgroup%(_num).default,0")
+		_num++
+	}
+	FWRITE(_file,"")
+	_f = FCLOSE(_file)
+}
+
+OnGenerateDoors : all {
+	_images = FENUM("%(shellPath)door/") //shell path variable has a slash added on the end, image folder still needs one.
+	_images = SPLIT(_images,",") //split the thing cause it doesnt like it sometimes if i dont
+	
+	_file = "%(shellPath)surfaces_doors.txt"
+	_startNum = 20 //arbitrary, but this way it's not overlapping w/ anything
+	_num = _startNum
+	
+	_f = FOPEN(_file,'w')
+	FWRITE(_file,"version,1"); FWRITE(_file,"")
+	foreach _images; _image {
+		FWRITE(_file,"surface%(_num)")
+		FWRITE(_file,"{")
+		FWRITE(_file,"    element0,overlay,door/%(_image),0,0")
+		FWRITE(_file,"}")
+		FWRITE(_file,"") //add an empty line for space
+		_num++
+	}
+	FWRITE(_file,"")
+	_num = _startNum; _animNum = _startNum
+	FWRITE(_file,"surface0")
+	FWRITE(_file,"{")
+	foreach _images; _image {
+		if "closed" _in_ "%(_image)" {
+			FWRITE(_file,"    animation%(_animNum).interval,bind")
+			FWRITE(_file,"    animation%(_animNum).pattern0,overlay,%(_num),0,0,0")
+			_animNum++
+		}
+		_num++
+	}
+	FWRITE(_file,"}")
+	FWRITE(_file,"")
+	_num = _startNum; _animNum = _startNum
+	FWRITE(_file,"surface1")
+	FWRITE(_file,"{")
+	foreach _images; _image {
+		if "peek" _in_ "%(_image)" {
+			FWRITE(_file,"    animation%(_animNum).interval,bind")
+			FWRITE(_file,"    animation%(_animNum).pattern0,overlay,%(_num),0,0,0")
+			_animNum++
+		}
+		_num++
+	}
+	FWRITE(_file,"}")
+	FWRITE(_file,"")
+	_num = _startNum
+	_animNum = _startNum
+	FWRITE(_file,"surface2")
+	FWRITE(_file,"{")
+	foreach _images; _image {
+		if "open" _in_ "%(_image)" {
+			FWRITE(_file,"    animation%(_animNum).interval,bind")
+			FWRITE(_file,"    animation%(_animNum).pattern0,overlay,%(_num),0,0,0")
+			_animNum++
+		}
+		_num++
+	}
+	FWRITE(_file,"}")
+	_f = FCLOSE(_file)
+	--
+	//add file for copy/pasting into descript while we're at it
+	_file = "%(shellPath)descript.txt"
+	_num = _startNum // reset it
+	_f = FOPEN(_file,'a')
+	FWRITE(_file,"")
+	foreach _images; _image {
+		_image = ERASE(_image,-4,4)
+		_image = SPLIT(_image,'_')
+		if _image[1] == "open" {
+			FWRITE(_file,"sakura.bindgroup%(_num).name,door,%(_image[0])")
+			FWRITE(_file,"sakura.bindgroup%(_num).default,0")
+			_num++
+		}
+	}
+	FWRITE(_file,"")
+	_f = FCLOSE(_file)
+}
+
+OnLastTalk
+{
+	LastTalk
+}
+
+OnToggleAsktoOpen {
+	askToOpen = reference0; OnSakuraMenu
+}
+
+OnTalkRateChange
+{
+	aitalkinterval = TOINT(reference0); OnSakuraMenu
+}

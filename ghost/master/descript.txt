@@ -1,0 +1,25 @@
+charset,UTF-8
+
+name,Something lies past the threshold
+type,ghost
+
+shiori,yaya.dll
+
+craftman,SmokyCinnamonRoll
+craftmanw,SmokyCinnamonRoll
+craftmanurl,https://smokycinnamon.github.io/indifferentsorrel/index.html
+
+sakura.name,Ominous Door
+kero.name,self preservation
+
+icon,icon.ico
+
+balloon,Distant Lights 01 - Yellow
+
+balloon,Distant Lights 00 - Mauve
+balloon,Distant Lights 02 - Green
+balloon,Distant Lights 03 - Blue
+balloon,Distant Lights 04 - Purple
+balloon,Distant Lights 05 - Gray
+
+sstp.allowunspecifiedsend,0

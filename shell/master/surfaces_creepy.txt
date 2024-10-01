@@ -1,0 +1,134 @@
+creepy 200+
+version,1
+
+surface200
+{
+    element0,overlay,base_open.png,0,0
+    element1,overlayfast,creepy/bloodNebula.png,0,0
+}
+
+surface201
+{
+    element0,overlay,base_open.png,0,0
+    element1,overlayfast,creepy/brickEye.png,0,0
+}
+
+surface202
+{
+    element0,overlay,base_open.png,0,0
+    element1,overlayfast,creepy/deadTree.png,0,0
+}
+
+surface203
+{
+    element0,overlay,base_open.png,0,0
+    element1,overlayfast,creepy/fleshChunk.png,0,0
+}
+
+surface204
+{
+    element0,overlay,base_open.png,0,0
+    element1,overlayfast,creepy/hanging.png,0,0
+}
+
+surface205
+{
+    element0,overlay,base_open.png,0,0
+    element1,overlayfast,creepy/lightningWizard.png,0,0
+}
+
+surface206
+{
+    element0,overlay,base_open.png,0,0
+    element1,overlayfast,creepy/muscleRibbon.png,0,0
+}
+
+surface207
+{
+    element0,overlay,base_open.png,0,0
+    element1,overlayfast,creepy/snake.png,0,0
+}
+
+add dressups to surfaces 3 and 4
+surface3
+{
+    animation200.interval,bind
+    animation200.pattern0,overlay,200,0,0,0
+
+    animation201.interval,bind
+    animation201.pattern0,overlay,201,0,0,0
+
+    animation202.interval,bind
+    animation202.pattern0,overlay,202,0,0,0
+
+    animation203.interval,bind
+    animation203.pattern0,overlay,203,0,0,0
+
+    animation204.interval,bind
+    animation204.pattern0,overlay,204,0,0,0
+
+    animation205.interval,bind
+    animation205.pattern0,overlay,205,0,0,0
+
+    animation206.interval,bind
+    animation206.pattern0,overlay,206,0,0,0
+
+    animation207.interval,bind
+    animation207.pattern0,overlay,207,0,0,0
+
+}
+
+surface4
+{
+    animation200.interval,bind
+    animation200.pattern0,overlay,200,0,0
+
+    animation201.interval,bind
+    animation201.pattern0,overlay,201,0,0
+
+    animation202.interval,bind
+    animation202.pattern0,overlay,202,0,0
+
+    animation203.interval,bind
+    animation203.pattern0,overlay,203,0,0
+
+    animation204.interval,bind
+    animation204.pattern0,overlay,204,0,0
+
+    animation205.interval,bind
+    animation205.pattern0,overlay,205,0,0
+
+    animation206.interval,bind
+    animation206.pattern0,overlay,206,0,0
+
+    animation207.interval,bind
+    animation207.pattern0,overlay,207,0,0
+
+}
+surface0
+{
+    animation200.interval,bind
+    animation200.pattern0,interpolate,200,0,0
+
+    animation201.interval,bind
+    animation201.pattern0,interpolate,201,0,0
+
+    animation202.interval,bind
+    animation202.pattern0,interpolate,202,0,0
+
+    animation203.interval,bind
+    animation203.pattern0,interpolate,203,0,0
+
+    animation204.interval,bind
+    animation204.pattern0,interpolate,204,0,0
+
+    animation205.interval,bind
+    animation205.pattern0,interpolate,205,0,0
+
+    animation206.interval,bind
+    animation206.pattern0,interpolate,206,0,0
+
+    animation207.interval,bind
+    animation207.pattern0,interpolate,207,0,0
+
+}

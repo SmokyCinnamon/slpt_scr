@@ -1,0 +1,10 @@
+shell/master/profile/
+ghost/master/profile/
+
+shell/master/profile/*
+ghost/master/profile/*
+
+ghost/master/yaya_variable.cfg
+
+distant_lights_01_yellow/
+distant_lights_01_yellow/*

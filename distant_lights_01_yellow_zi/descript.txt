@@ -1,0 +1,101 @@
+charset,UTF-8
+type,balloon
+use_self_alpha,1
+use_input_alpha,1
+
+
+//——— Basic information ———
+name,Distant Lights 01 - Yellow
+craftman,Zichqec
+craftmanurl,https://ukagaka.zichqec.com/
+homeurl,https://zichqec.github.io/s-the-skeleton/updates/balloons/distant_lights_01_yellow_zi/
+
+
+//——— Display area ———
+origin.x,0
+origin.y,0
+
+validrect.left,8
+validrect.top,17
+validrect.right,-8
+validrect.bottom,-17
+
+wordwrappoint.x,-22
+
+
+//——— Font ———
+font.name,Calibri
+font.height,14
+
+font.color.r,235
+font.color.g,232
+font.color.b,216
+
+anchor.font.color.r,224
+anchor.font.color.g,210
+anchor.font.color.b,100
+
+cursor.font.color.r,224
+cursor.font.color.g,210
+cursor.font.color.b,100
+
+cursor.style,underline
+
+disable.font.color.r,150
+disable.font.color.g,150
+disable.font.color.b,150
+
+
+//——— Arrows ———
+arrow0.x,-15
+arrow0.y,18
+
+arrow1.x,-15
+arrow1.y,-35
+
+
+//——— Online marker ———
+onlinemarker.x,0
+onlinemarker.y,0
+
+onlinemarker.interval,50
+
+
+//——— SSTP ———
+sstpmarker.x,2
+sstpmarker.y,3
+
+sstpmessage.font.name,Calibri
+sstpmessage.font.height,11
+
+sstpmessage.x,20
+sstpmessage.xr,-4
+sstpmessage.y,1
+
+sstpmessage.font.color.r,230
+sstpmessage.font.color.g,230
+sstpmessage.font.color.b,230
+
+
+//——— Number ———
+number.font.name,Calibri
+number.font.height,11
+
+number.xr,-3
+number.y,-15
+
+number.font.color.r,030
+number.font.color.g,030
+number.font.color.b,030
+
+
+//——— Input box ———
+communicatebox.x,5
+communicatebox.y,9
+
+communicatebox.width,295
+communicatebox.height,22
+
+communicatebox.background.color.r,039
+communicatebox.background.color.g,040
+communicatebox.background.color.b,043
