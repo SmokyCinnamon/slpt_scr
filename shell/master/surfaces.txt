@@ -8,8 +8,7 @@
 surface0
 {
 	element0,overlay,door_closed.png,0,0
-
-
+	//collision0,34,65,130,65,DOOR
 	//i cant figure out how to get the other two doors cooperative so that'll have to be ghost side
 	//animation1.interval,never
 	//animation1.pattern0,base,0,150,0,0

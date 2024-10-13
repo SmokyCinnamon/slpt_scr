@@ -11,6 +11,8 @@ OnFirstBoot
 	passmin = 0
 	currentColor = "None"
 	aitalkinterval = 300
+	hovering = 0
+	hoverReact = "No"
 	"\![bind,%(doorType),%(currentDoor),1]"; --
 	
 	"\1\s[-1]\0\s[0]Every time I open this door, it leads somewhere different.\x[noclear]\n\nSometimes I see people, but they never see me.\x[noclear]\n\n...I worry what will happen if I step through.\e"
@@ -25,6 +27,8 @@ OnInitialize
 	//if !ISVAR("NewVariable"); NewVariable = 0
 	//This means that it will only set the new variable if the user doesn't already have it, so that their variables don't get overwritten
 
+	hovering = 0
+	
 	if RAND(100) + 1 <= 25 {
 		doorType = "creepy"
 		currentDoor = ANY(creepyDoors)

@@ -51,3 +51,35 @@ OnMouseMove.Sakura
 		//"\0\s[0]Petting??"
 	}
 }
+
+OnMouseEnterAll {
+	if hoverReact == "Yes" {
+		hovering = 1
+		if doorIsOpen == 2 {
+			"\0\s[1]\w6\0\s[0]"; --
+		}
+		elseif doorIsOpen == 1 {
+			"\0\s[2]\w6\0\s[1]\w6\0\s[0]"; --
+		}
+		"\0\s[0]"; --
+		doorIsOpen = 0
+	}
+}
+
+
+OnMouseLeaveAll {
+	if hovering == 1 {
+		"\0\s[0]"; --
+		if doorType == "creepy" {
+			"\![bind,%(doorType),%(currentDoor),1]"; --
+			"\0\s[1]"; --
+			doorIsOpen = 2
+		}
+		else {
+			"\![bind,%(doorType),%(currentDoor),1]"; --
+			"\0\s[0]\w6\0\s[1]\w6\0\s[2]"; --
+			doorIsOpen = 1
+		}
+	}
+	hovering = 0
+}
